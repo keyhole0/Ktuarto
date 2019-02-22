@@ -54,4 +54,8 @@ export class Box{
         }
         return obj
     }
+
+    isEmpty(){
+        return (this.piecelist.length == 0);
+    }
 }
