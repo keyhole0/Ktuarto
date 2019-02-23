@@ -1,9 +1,10 @@
-import {Piece} from './javascript/quarto/gameobject/piece.js';
-import {Board, HiTechBoard} from './javascript/quarto/gameobject/board.js';
-import {Box} from './javascript/quarto/gameobject/box.js';
-import * as util from "./javascript/quarto/gameutil/util.js";
-import {AiBase} from "./javascript/quarto/ailogic/ai_base.js";
+//import {Piece} from './javascript/quarto/gameobject/piece.js';
+//import {Board, HiTechBoard} from './javascript/quarto/gameobject/board.js';
+//import {Box} from './javascript/quarto/gameobject/box.js';
+//import * as util from "./javascript/quarto/gameutil/util.js";
+//import {AiBase} from "./javascript/quarto/ailogic/ai_base.js";
 import {AiRandom} from "./javascript/quarto/ailogic/ai_random.js";
+import {GameSys} from "./javascript/quarto/gamesys/gamesys.js";
 
 //エレメント取得
 var button_gamestart = document.getElementById('gamestart');
@@ -13,12 +14,42 @@ var text_command = document.getElementById('command');
 
 //イベント
 function onclick(ev){
-    testAiRandom();
+    gameMain();
 }
 
 button_gamestart.addEventListener('click', onclick);
 
+function gameMain(){
+    let sys = new GameSys(new AiRandom(), new AiRandom());
+    let phase = 0;
+    while(!sys.isGameEnd){
+        sys.dispBoard();
+        console.log('choicePiece:'+((sys.choicePiece)? sys.choicePiece.toNumList():null));
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        switch(phase){
+            case 0:
+                sys.firstPhaseChoice();
+                break;
+            case 1:
+                sys.firstPhasePut();
+                break;
+            case 2:
+                sys.secondPhaseChoice();
+                break;
+            case 3:
+                sys.secondPhasePut();
+                break;
+
+        }
+        phase = (phase+1)%4;
+    }
+    sys.dispBoard();
+    console.log('winner:'+sys.winner);
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+}
+
 //テストコード
+/*
 function testAiRandom(){
     let ai = new AiRandom();
 
@@ -158,3 +189,4 @@ function testPiece(){
     console.log(p);
     console.log(p2);
 }
+*/

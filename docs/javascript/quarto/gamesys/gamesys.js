@@ -1,5 +1,5 @@
-import {HiTechBoard} from './javascript/quarto/gameobject/board.js';
-import {Box} from './javascript/quarto/gameobject/box.js';
+import {HiTechBoard} from '../gameobject/board.js';
+import {Box} from '../gameobject/box.js';
 
 export class GameSys{
 
@@ -100,7 +100,7 @@ export class GameSys{
         for(let i=0; i<4; ++i){
             let l = [];
             for(let j=0; j<4; ++j){
-                let p = board.onboard[i][j];
+                let p = this.board.onboard[i][j];
                 if(p != null){
                     p = ''+p.toNumList();
                 }else{
