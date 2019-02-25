@@ -52,11 +52,11 @@ export class AiRandom extends ai_base.AiBase{
 
         //つんでない手を取得
         let checkpattern = util.losePiecePos2(in_board, in_box, in_piece);
-        let patternlist = getTrueIndex(checkpattern);
+        let patternlist = util.getTrueIndex(checkpattern);
         
         //選択肢が残っていなければ今開いてるマスから選択
         if ( patternlist.length == 0 ){
-            patternlist = getTrueIndex(in_board.getIsBlankList());
+            patternlist = util.getTrueIndex(in_board.getIsBlankList());
         }
 
         //乱数生成
@@ -81,17 +81,4 @@ export class AiRandom extends ai_base.AiBase{
             'top':res_top,
         };
     }
-}
-
-//4×4の配列からtrueのインデックスを取得する
-function getTrueIndex(matrix){
-    let result = []
-    for(let left=0;left<4;++left){
-        for(let top=0; top<4; ++top){
-            if(matrix[left][top]){
-                result.push([left, top]);
-            }
-        }
-    }
-    return result;
 }

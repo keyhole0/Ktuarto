@@ -3,6 +3,7 @@
 //import {Box} from './javascript/quarto/gameobject/box.js';
 //import * as util from "./javascript/quarto/gameutil/util.js";
 //import {AiBase} from "./javascript/quarto/ailogic/ai_base.js";
+import {AiMontecarlo} from "./javascript/quarto/ailogic/ai_montecarlo.js";
 import {AiRandom} from "./javascript/quarto/ailogic/ai_random.js";
 import {GameSys} from "./javascript/quarto/gamesys/gamesys.js";
 
@@ -20,7 +21,7 @@ function onclick(ev){
 button_gamestart.addEventListener('click', onclick);
 
 function gameMain(){
-    let sys = new GameSys(new AiRandom(), new AiRandom());
+    let sys = new GameSys(new AiRandom(), new AiMontecarlo());
     let phase = 0;
     while(!sys.isGameEnd){
         sys.dispBoard();

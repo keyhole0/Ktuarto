@@ -90,6 +90,29 @@ export function randint(max){
     return Math.floor(Math.random() * max);
 }
 
+//4×4の配列からtrueのインデックスを取得する
+export function getTrueIndex(matrix){
+    let result = [];
+    for(let left=0;left<4;++left){
+        for(let top=0; top<4; ++top){
+            if(matrix[left][top]){
+                result.push([left, top]);
+            }
+        }
+    }
+    return result;
+}
+
+//いずれかがtrue
+export function any(list){
+    for(let i=0; i<list.length; ++i){
+        for(let j=0; j<list[i].length; ++j){
+            if(list[i][j])  return true;
+        }
+    }
+    return false;
+}
+
 export class p{
     //_file=None
 
