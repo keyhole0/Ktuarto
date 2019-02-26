@@ -113,6 +113,37 @@ export function any(list){
     return false;
 }
 
+//リスト内でもっとも大きい値を持つインデックスを返す
+export function argmax(list){
+    let m = list[0];
+    let retind = 0;
+    for(let i=1; i<list.length; ++i){
+        if(m < list[i]){
+            retind = i;
+            m = list[i];
+        }
+    }
+    return retind;
+}
+
+//リストの値を合算する
+export function sum(list){
+    let sum = 0;
+    for(let i=0; i<list.length; ++i){
+        sum += list[i];
+    }
+    return sum;
+}
+
+//ゼロ配列の生成
+export function zeros(num){
+    let list = new Array(num);
+    for(let i=0; i<list.length; ++i){
+        list[i] = 0;
+    }
+    return list;
+}
+
 export class p{
     //_file=None
 

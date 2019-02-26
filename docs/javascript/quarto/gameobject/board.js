@@ -82,6 +82,7 @@ export class HiTechBoard extends Board{
     //Boardのinitメソッドをオーバーライドする。
     //Boardのコンストラクタからこのメソッドを呼んでもらう
     init(boardlist){
+        this.countPiecesNum = 0;    //おいてあるコマの数
         this.line_info = null;
         
         if(boardlist){
@@ -141,6 +142,7 @@ export class HiTechBoard extends Board{
             if (left + top == 3)
                 addList(this.line_info[9], piece.param);
         }
+        ++this.countPiecesNum;  //コマの数をカウントアップ
     }
 
     //クアルト宣言できるかどうか
@@ -183,6 +185,11 @@ export class HiTechBoard extends Board{
         }
         return checkpos;
     }
+
+    //おいてあるコマの数
+    getPiecesNum(){
+        return this.countPiecesNum;
+    }
     
     clone(){
         let cobj = new HiTechBoard();
@@ -204,6 +211,9 @@ export class HiTechBoard extends Board{
                 cobj.line_info[i][j] = this.line_info[i][j];
             }
         }
+
+        //コマの数をコピー
+        cobj.countPiecesNum = this.countPiecesNum;
 
         return cobj
     }
