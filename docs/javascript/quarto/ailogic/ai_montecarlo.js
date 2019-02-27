@@ -32,7 +32,7 @@ function ucb1(count, win, total, c=1.5, fpu=100){
  */
 export class MontecarloParameter{
     constructor(){
-        this.playoutTimelimit = 6000;   //プレイアウトの時間制限（ミリ秒）
+        this.playoutTimelimit = 1000;   //プレイアウトの時間制限（ミリ秒）
         this.ucb1_c = 1.0;           //ucb1のc定数
         this.ucb1_fpu = 100;         //fpu値
         this.playoutDepthBorder = 4; //プレイアウトをさらに深くする閾値   -1はチェックしない
@@ -68,6 +68,7 @@ export class AiMontecarlo extends ai_base.AiBase{
             //モンテカルロロジック実行
             let branchinfo = new MonteBranchInfo(in_board, in_box, null, true, this.param);
             res_piece = branchinfo.runChoice();
+            branchinfo.releaseRelation();   //内部で保持している参照関係を外す（メモリリーク対策）
         }
             
         //callの判定
@@ -90,6 +91,7 @@ export class AiMontecarlo extends ai_base.AiBase{
         //モンテカルロ木探索を行う。
         let branchinfo = new MonteBranchInfo(in_board, in_box, in_piece, true, this.param);
         let putres = branchinfo.runPut();
+        branchinfo.releaseRelation();   //内部で保持している参照関係を外す（メモリリーク対策）
         let res_left = putres[0];
         let res_top = putres[1];
         
@@ -570,6 +572,18 @@ class MonteBranchInfo{
         //this.simpleLog()
         
         return returnIndex;
+    }
+    
+    /**他のインスタンスを参照している箇所を外す */
+    releaseRelation(){
+        //ブランチがある場合、その先のreleaseRelationも呼び出す。
+        if(this.branchList != null){
+            for(let b of this.branchList){
+                b.releaseRelation();
+            }
+        }
+        this.branchList = null;
+        this.parent = null;
     }
 
 }

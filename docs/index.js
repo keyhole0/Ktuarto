@@ -21,7 +21,7 @@ function onclick(ev){
 button_gamestart.addEventListener('click', onclick);
 
 function gameMain(){
-    let sys = new GameSys(new AiRandom(), new AiMontecarlo());
+    let sys = new GameSys(new AiMontecarlo(), new AiRandom());
     let phase = 0;
     while(!sys.isGameEnd){
         sys.dispBoard();
@@ -32,15 +32,14 @@ function gameMain(){
                 sys.firstPhaseChoice();
                 break;
             case 1:
-                sys.firstPhasePut();
+                sys.secondPhasePut();
                 break;
             case 2:
                 sys.secondPhaseChoice();
                 break;
             case 3:
-                sys.secondPhasePut();
+                sys.firstPhasePut();
                 break;
-
         }
         phase = (phase+1)%4;
     }
