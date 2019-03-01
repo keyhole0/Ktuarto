@@ -3,8 +3,6 @@ import * as board from "../gameobject/board.js";
 import * as box from "../gameobject/box.js";
 import * as piece from "../gameobject/piece.js";
 import * as util from "../gameutil/util.js";
-import "https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js";   //numpyライクなnumjsライブラリをimport
-let np = nj;    //numjsをnumpyのエイリアスに合わせる
 
 /*
 UCB1計算関連のクラス

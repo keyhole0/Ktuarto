@@ -1,2 +1,4 @@
 /Apache24
 /runtestapache.bat
+/node_modules
+/package.json
