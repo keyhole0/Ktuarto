@@ -3,23 +3,30 @@
 //import {Box} from './javascript/quarto/gameobject/box.js';
 //import * as util from "./javascript/quarto/gameutil/util.js";
 //import {AiBase} from "./javascript/quarto/ailogic/ai_base.js";
-import {AiMontecarlo} from "./javascript/quarto/ailogic/ai_montecarlo.js";
-import {AiRandom} from "./javascript/quarto/ailogic/ai_random.js";
-import {GameSys} from "./javascript/quarto/gamesys/gamesys.js";
+//import {AiMontecarlo} from "./javascript/quarto/ailogic/ai_montecarlo.js";
+//import {AiRandom} from "./javascript/quarto/ailogic/ai_random.js";
+//import {GameSys} from "./javascript/quarto/gamesys/gamesys.js";
 
 //エレメント取得
-var button_gamestart = document.getElementById('gamestart');
-var div_board = document.getElementById('board');
-var button_enter = document.getElementById('enter');
-var text_command = document.getElementById('command');
+const button_gamestart = document.getElementById('gamestart');
+const div_board = document.getElementById('board');
+const button_enter = document.getElementById('enter');
+const text_command = document.getElementById('command');
+
+const myWorker = new Worker("worker.js");
+myWorker.onmessage = (e) => {
+    console.log('GameOver');
+};
 
 //イベント
 function onclick(ev){
-    gameMain();
+    myWorker.postMessage(1);
+    //gameMain();
 }
 
 button_gamestart.addEventListener('click', onclick);
 
+/*
 function gameMain(){
     let sys = new GameSys(new AiMontecarlo(), new AiRandom());
     let phase = 0;
@@ -47,6 +54,7 @@ function gameMain(){
     console.log('winner:'+sys.winner);
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 }
+*/
 
 //テストコード
 /*
