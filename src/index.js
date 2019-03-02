@@ -5,7 +5,8 @@
 //import {AiBase} from "./javascript/quarto/ailogic/ai_base.js";
 //import {AiMontecarlo} from "./javascript/quarto/ailogic/ai_montecarlo.js";
 //import {AiRandom} from "./javascript/quarto/ailogic/ai_random.js";
-//import {GameSys} from "./javascript/quarto/gamesys/gamesys.js";
+import {GameSys} from "./javascript/quarto/gamesys/gamesys";
+import {GamePlayer, AIPlayer} from "./javascript/quarto/gamesys/gameplayer";
 
 //エレメント取得
 const button_gamestart = document.getElementById('gamestart');
@@ -13,15 +14,13 @@ const div_board = document.getElementById('board');
 const button_enter = document.getElementById('enter');
 const text_command = document.getElementById('command');
 
-const myWorker = new Worker("worker.js");
-myWorker.onmessage = (e) => {
-    console.log('GameOver');
-};
+const player1 = new GamePlayer('プレイヤー１');
+const player2 = new GamePlayer('プレイヤー２');
+const gamesys = new GameSys(player1, player2);
 
 //イベント
 function onclick(ev){
-    myWorker.postMessage(1);
-    //gameMain();
+    gamesys.start();
 }
 
 button_gamestart.addEventListener('click', onclick);
