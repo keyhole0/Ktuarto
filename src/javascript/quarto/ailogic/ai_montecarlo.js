@@ -73,7 +73,7 @@ export class AiMontecarlo extends ai_base.AiBase{
         let res_call = (in_board.isQuarto())? "Quarto":"Non";
 
         return {
-            'piece':res_piece,
+            'piece':res_piece.toDict(),
             'call':res_call,
         };
     }

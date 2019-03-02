@@ -48,13 +48,13 @@ export class Board{
         return this.onboard;
     }
     
-    toJsonObject(){
+    toDict(){
         let obj = [];
         for(let left=0; left<4; ++left){
             for (let top=0; top<4; ++top){
                 let p = this.onboard[left][top];
                 if(p) p = p.toDict();
-                dic = {
+                let dic = {
                     "left":left,
                     "top":top,
                     "piece":p,

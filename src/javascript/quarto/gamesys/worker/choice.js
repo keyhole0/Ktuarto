@@ -1,8 +1,11 @@
+import {HiTechBoard} from '../../gameobject/board';
+import {Box} from '../../gameobject/box';
+import {aiFactory} from './ai_factory';
+
 onmessage = function(e) {
-    let ai = e.data[0];
-    let arg1 = e.data[1];
-    let arg2 = e.data[2];
-    let result = ai.choice(arg1, arg2);
-    postMessage(result);
+    let ai = aiFactory(e.data.aiName);
+    let in_board = new HiTechBoard(e.data.in_board);
+    let in_box = new Box(e.data.in_box);
+    postMessage(ai.choice(in_board, in_box));
 }
   

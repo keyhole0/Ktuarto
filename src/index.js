@@ -5,6 +5,7 @@
 //import {AiBase} from "./javascript/quarto/ailogic/ai_base.js";
 //import {AiMontecarlo} from "./javascript/quarto/ailogic/ai_montecarlo.js";
 //import {AiRandom} from "./javascript/quarto/ailogic/ai_random.js";
+import {Piece} from './javascript/quarto/gameobject/piece.js';
 import {GameSys} from "./javascript/quarto/gamesys/gamesys";
 import {GamePlayer, AIPlayer} from "./javascript/quarto/gamesys/gameplayer";
 
@@ -14,8 +15,9 @@ const div_board = document.getElementById('board');
 const button_enter = document.getElementById('enter');
 const text_command = document.getElementById('command');
 
-const player1 = new GamePlayer('プレイヤー１');
-const player2 = new GamePlayer('プレイヤー２');
+//const player1 = new GamePlayer('プレイヤー２');
+const player1 = new AIPlayer('プレイヤー１', 'AiMontecarlo');
+const player2 = new AIPlayer('プレイヤー２', 'AiRandom');
 const gamesys = new GameSys(player1, player2);
 
 //イベント
@@ -24,6 +26,9 @@ function onclick(ev){
 }
 
 button_gamestart.addEventListener('click', onclick);
+button_enter.addEventListener('click', (e)=>{
+    player1.actionChoice(gamesys.box.piecelist[0],'Non');
+});
 
 /*
 function gameMain(){

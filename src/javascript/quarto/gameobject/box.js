@@ -5,8 +5,7 @@ export class Box{
         this.piecelist = null;
         if(boxlist){
             let tlist = [];
-            for(let i=0; i<boxlist.length; ++i){
-                let piecedict = boxlist[i];
+            for(let piecedict of boxlist){
                 let p = piece.Piece.getInstance(piecedict);
                 tlist.push(p);
             }
@@ -46,10 +45,9 @@ export class Box{
         }
     }
     
-    toJsonObject(){
+    toDict(){
         let obj = [];
-        for(let i=0; i<this.piecelist.length; ++i){
-            let P = this.piecelist[i];
+        for(let p of this.piecelist){
             obj.push(p.toDict());
         }
         return obj

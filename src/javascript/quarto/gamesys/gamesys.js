@@ -42,13 +42,11 @@ export class GameSys{
      * @param {GamePlayer} player1
      */
     setPlayer(player0, player1){
-        this.players = [];
+        this.players = [player0, player1];
         player0.setGamesys(this);
         player0.setPlayerNo(0);
         player1.setGamesys(this);
         player1.setPlayerNo(1);
-        this.players.push(player0);
-        this.players.push(player1);
     }
 
     choice(piece, call){
@@ -146,14 +144,14 @@ export class GameSys{
     }
 }
 
-class Phase{
+export class Phase{
     constructor(gamesys, playerno){
         this.gamesys = gamesys;
         this.playerno = playerno;
     }
 }
 
-class PhaseChoice extends Phase{
+export class PhaseChoice extends Phase{
     runAi(){
         let player = this.gamesys.players[this.playerno];
         if(player instanceof AIPlayer){
@@ -165,13 +163,13 @@ class PhaseChoice extends Phase{
         this.call = call;
     }
     action(){
-        this.gamesys.choice(this.playerno, this.piece, this.call);
+        this.gamesys.choice(this.piece, this.call);
         this.gamesys.disp();
         this.gamesys.nextPhase();
     }
 }
 
-class PhasePut extends Phase{
+export class PhasePut extends Phase{
     runAi(){
         let player = this.gamesys.players[this.playerno];
         if(player instanceof AIPlayer){
@@ -184,7 +182,7 @@ class PhasePut extends Phase{
         this.call = call;
     }
     action(){
-        this.gamesys.put(this.playerno, this.left, this.top, call);
+        this.gamesys.put(this.left, this.top, this.call);
         this.gamesys.disp();
         this.gamesys.nextPhase();
     }
