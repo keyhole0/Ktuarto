@@ -2,29 +2,25 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-  <nav>
-    ナビゲーション
-  </nav>
-  <section>
-    <h3>トップページ</h3>
-  </section>
   <section>
     <h3>ゲーム画面</h3>
-    <div>
-      <button id="gamestart">ゲームスタート</button>
-      <div id="board">ゲームの盤面</div>
-      <div id="piece">残っているコマ</div>
-      <div id="player1choice">プレイヤー1の選択コマ</div>
-      <div id="player2choice">プレイヤー2の選択コマ</div>
-      <div id="inputpanel">操作入力<input id="command"><button id="enter">Enter</button></div>
-      <div id="result"></div>
+    <div><button id="gamestart">ゲームスタート</button></div>
+    <div id="board">
+      <table border="1">
+          <tr><td id="c00"></td><td id="c01"></td><td id="c02"></td><td id="c03"></td></tr>
+          <tr><td id="c10"></td><td id="c11"></td><td id="c12"></td><td id="c13"></td></tr>
+          <tr><td id="c20"></td><td id="c21"></td><td id="c22"></td><td id="c23"></td></tr>
+          <tr><td id="c30"></td><td id="c31"></td><td id="c32"></td><td id="c33"></td></tr>
+      </table>
     </div>
-  </section>
-  <section>
-    <h3>あとがき</h3>
+    <div id="box">残っているコマ</div>
+    <div id="piece">プレイヤー1の選択コマ</div>
+    <div id="inputpanel">操作入力<input id="command"><button id="enter">Enter</button></div>
+    <div id="result"></div>
   </section>
 </body>
-<script src="main.js"></script>
+<script src="index.js"></script>
 </html>

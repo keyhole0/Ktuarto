@@ -1,204 +1,27 @@
-//import {Piece} from './js/quarto/gameobject/piece.js';
-//import {Board, HiTechBoard} from './js/quarto/gameobject/board.js';
-//import {Box} from './js/quarto/gameobject/box.js';
-//import * as util from "./js/quarto/gameutil/util.js";
-//import {AiBase} from "./js/quarto/ailogic/ai_base.js";
-//import {AiMontecarlo} from "./js/quarto/ailogic/ai_montecarlo.js";
-//import {AiRandom} from "./js/quarto/ailogic/ai_random.js";
-import {Piece} from './js/quarto/gameobject/piece.js';
 import {GameSys} from "./js/quarto/gamesys/gamesys";
 import {GamePlayer, AIPlayer} from "./js/quarto/gamesys/gameplayer";
+import {Display} from "./index_disp";
 
-//エレメント取得
-const button_gamestart = document.getElementById('gamestart');
-const div_board = document.getElementById('board');
-const button_enter = document.getElementById('enter');
-const text_command = document.getElementById('command');
-
+//プレイヤーとゲームシステム用意
 //const player1 = new GamePlayer('プレイヤー２');
 const player1 = new AIPlayer('プレイヤー１', 'AiMontecarlo');
 const player2 = new AIPlayer('プレイヤー２', 'AiRandom');
 const gamesys = new GameSys(player1, player2);
+const display = new Display();
+gamesys.setDisplay(display);
+
+//エレメント取得
+const button_gamestart = document.getElementById('gamestart');
+const div_board = document.getElementById('board');
+const div_box = document.getElementById('box');
+const div_piece = document.getElementById('piece');
+const div_result = document.getElementById('result');
+display.setBoard(div_board);
+display.setBox(div_box);
+display.setPiece(div_piece);
+display.setResult(div_result);
 
 //イベント
-function onclick(ev){
+button_gamestart.addEventListener('click', e=>{
     gamesys.start();
-}
-
-button_gamestart.addEventListener('click', onclick);
-button_enter.addEventListener('click', (e)=>{
-    player1.actionChoice(gamesys.box.piecelist[0],'Non');
 });
-
-/*
-function gameMain(){
-    let sys = new GameSys(new AiMontecarlo(), new AiRandom());
-    let phase = 0;
-    while(!sys.isGameEnd){
-        sys.dispBoard();
-        console.log('choicePiece:'+((sys.choicePiece)? sys.choicePiece.toNumList():null));
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        switch(phase){
-            case 0:
-                sys.firstPhaseChoice();
-                break;
-            case 1:
-                sys.secondPhasePut();
-                break;
-            case 2:
-                sys.secondPhaseChoice();
-                break;
-            case 3:
-                sys.firstPhasePut();
-                break;
-        }
-        phase = (phase+1)%4;
-    }
-    sys.dispBoard();
-    console.log('winner:'+sys.winner);
-    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-}
-*/
-
-//テストコード
-/*
-function testAiRandom(){
-    let ai = new AiRandom();
-
-    let board = new HiTechBoard([]);
-    let bo = new Box(null, board);
-    
-    let rc;
-    let rp;
-    let call;
-    while(1){
-        rc = ai.choice(board, bo);
-        console.log(rc);
-        bo.remove(rc.piece);
-        call = rc.call;
-        if(call == "Quarto") break;
-        rp = ai.put(board, rc.piece);
-        console.log(rp);
-        board.setBoard(rp.left, rp.top, rc.piece);
-        call = rp.call ;
-        if(call == "Quarto") break;
-        if(bo.piecelist.length == 0) break;
-    }
-
-    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-    for(let i=0; i<4; ++i){
-        let l = [];
-        for(let j=0; j<4; ++j){
-            let p = board.onboard[i][j];
-            if(p != null){
-                p = ''+p.toNumList();
-            }else{
-                p = "       ";
-            }
-            l[j] = p;
-        }
-        console.log(l);
-    }
-    console.log(call);
-    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-}
-
-function testUtil(){
-    let m = [
-        {"left":1,"top":2,
-            "piece":{
-                "color":"dark",
-                "shape":"circular",
-                "top":"solid",
-                "height":"tall"
-            }//10
-        }
-    ];
-    let p = Piece.getAllPiece();
-    let board = new HiTechBoard(m);
-    board.setBoard(0,3,p[9]);
-    board.setBoard(2,1,p[11]);
-    //b.setBoard(3,0,p[12]);
-    console.log('util.endPiece:'+util.endPiece(board, p[12]));
-    console.log('util.endPiecePos:'+util.endPiecePos(board, p[12]));
-    console.log('util.oddsPieces:');
-    console.log(util.oddsPieces(board, p));
-
-    let board2 = new HiTechBoard([]);
-    board2.setBoard(0,0,p[0]);
-    board2.setBoard(1,0,p[1]);
-    board2.setBoard(2,0,p[2]);
-
-    board2.setBoard(0,1,p[4]);
-    board2.setBoard(1,1,p[5]);
-    let bo = new Box(null, board2);
-    bo.remove(p[6]);
-    console.log('util.losePiecePos2:');
-    console.log(util.losePiecePos2(board2, bo, p[6]));
-}
-
-function testBox(){
-    let m = [
-        {"left":1,"top":2,
-            "piece":{
-                "color":"dark",
-                "shape":"circular",
-                "top":"solid",
-                "height":"tall"
-            }//10
-        }
-    ];
-    let p = Piece.getAllPiece();
-    let board = new HiTechBoard(m);
-    let b = new Box(null, board);
-    let b3 = b.clone();
-    b3.remove(p[4]);
-    console.log(b);
-    console.log(b3);
-
-    let m2 = [{
-        "color":"dark",
-        "shape":"circular",
-        "top":"solid",
-        "height":"tall"
-    }];
-    let b2 = new Box(m2, null);
-    console.log(b2);
-
-}
-
-function testBoard(){
-    let m = [
-        {"left":1,"top":2,
-            "piece":{
-                "color":"dark",
-                "shape":"circular",
-                "top":"solid",
-                "height":"tall"
-            }//10
-        }
-    ];
-    let p = Piece.getAllPiece();
-    let b = new HiTechBoard(m);
-    b.setBoard(0,3,p[9]);
-    b.setBoard(2,1,p[11]);
-    let b2 = b.clone();
-    b.setBoard(3,0,p[12]);
-    b2.setBoard(3,0,p[5]);
-    console.log(b);
-    console.log(b.isQuarto());
-    console.log(b2);
-    console.log(b2.isQuarto());
-
-}
-
-function testPiece(){
-    let p = Piece.getAllPiece();
-    p[0]=1;
-    let p2 = Piece.getAllPiece();
-    p[1].param[0]='a';
-    
-    console.log(p);
-    console.log(p2);
-}
-*/

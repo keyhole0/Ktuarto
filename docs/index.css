@@ -1,0 +1,19 @@
+body{
+    text-align:center;
+}
+div#board{
+    text-align:center;
+}
+
+canvas{
+    border:solid 1px;
+}
+
+table{
+    margin: auto;
+}
+td{
+    width:80px;
+    height:80px;
+}
+

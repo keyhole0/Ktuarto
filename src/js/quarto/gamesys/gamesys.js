@@ -24,7 +24,7 @@ export class GameSys{
         this.phasecount = 0;
 
         //AI実行
-        this.disp();
+        this.dispInit();
         this.nowPhase().runAi();
     }
 
@@ -47,6 +47,10 @@ export class GameSys{
         player0.setPlayerNo(0);
         player1.setGamesys(this);
         player1.setPlayerNo(1);
+    }
+
+    setDisplay(display){
+        this.display = display;
     }
 
     choice(piece, call){
@@ -103,15 +107,24 @@ export class GameSys{
         return this.isGameEnd;
     }
 
+    dispInit(){
+        this.display.dispInit();
+        this.display.dispMain(this.board, this.box, this.choicePiece);
+    }
+
     disp(){
-        this.dispBoard();
-        console.log('choicePiece:'+((this.choicePiece)? this.choicePiece.toNumList():null));
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        this.display.dispMain(this.board, this.box, this.choicePiece);
+        //this.dispBoard();
+        //console.log('choicePiece:'+((this.choicePiece)? this.choicePiece.toNumList():null));
+        //console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     }
 
     gameover(){
-        console.log('winner:'+this.players[this.winner].name);
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        let winner = null;
+        if(this.winner != null) winner = this.players[this.winner].name;
+        this.display.dispGameOver(winner);
+        //console.log('winner:'+this.players[this.winner].name);
+        //console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     }
 
     nextPhase(){
@@ -125,22 +138,6 @@ export class GameSys{
         
         //AIの実行
         this.nowPhase().runAi();
-    }
-
-    dispBoard(){
-        for(let i=0; i<4; ++i){
-            let l = [];
-            for(let j=0; j<4; ++j){
-                let p = this.board.onboard[i][j];
-                if(p != null){
-                    p = ''+p.toNumList();
-                }else{
-                    p = "       ";
-                }
-                l[j] = p;
-            }
-            console.log(l);
-        }
     }
 }
 
