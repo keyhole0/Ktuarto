@@ -1,13 +1,13 @@
-//import {Piece} from './javascript/quarto/gameobject/piece.js';
-//import {Board, HiTechBoard} from './javascript/quarto/gameobject/board.js';
-//import {Box} from './javascript/quarto/gameobject/box.js';
-//import * as util from "./javascript/quarto/gameutil/util.js";
-//import {AiBase} from "./javascript/quarto/ailogic/ai_base.js";
-//import {AiMontecarlo} from "./javascript/quarto/ailogic/ai_montecarlo.js";
-//import {AiRandom} from "./javascript/quarto/ailogic/ai_random.js";
-import {Piece} from './javascript/quarto/gameobject/piece.js';
-import {GameSys} from "./javascript/quarto/gamesys/gamesys";
-import {GamePlayer, AIPlayer} from "./javascript/quarto/gamesys/gameplayer";
+//import {Piece} from './js/quarto/gameobject/piece.js';
+//import {Board, HiTechBoard} from './js/quarto/gameobject/board.js';
+//import {Box} from './js/quarto/gameobject/box.js';
+//import * as util from "./js/quarto/gameutil/util.js";
+//import {AiBase} from "./js/quarto/ailogic/ai_base.js";
+//import {AiMontecarlo} from "./js/quarto/ailogic/ai_montecarlo.js";
+//import {AiRandom} from "./js/quarto/ailogic/ai_random.js";
+import {Piece} from './js/quarto/gameobject/piece.js';
+import {GameSys} from "./js/quarto/gamesys/gamesys";
+import {GamePlayer, AIPlayer} from "./js/quarto/gamesys/gameplayer";
 
 //エレメント取得
 const button_gamestart = document.getElementById('gamestart');
