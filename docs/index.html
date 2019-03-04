@@ -7,7 +7,10 @@
 <body>
   <section>
     <h3>ゲーム画面</h3>
-    <div>あなたの手番</div>
+    <div>先手はどちらから？(Who plays first?)
+      <input type="radio" id="I_plays_first" name="playsfirst" value="I" checked="checked"><label for="I_plays_first">私から(I do)</label>
+      <input type="radio" id="You_plays_first" name="playsfirst" value="You"><label for="You_plays_first">あなたから(You do)</label>
+    </div>
     <div><button id="gamestart">ゲームスタート</button></div>
     <div id="board">
       <table border="1">
@@ -19,7 +22,6 @@
     </div>
     <div id="box">残っているコマ</div>
     <div id="piece">プレイヤー1の選択コマ</div>
-    <div id="inputpanel">操作入力<input id="command"><button id="enter">Enter</button></div>
     <div id="result"></div>
   </section>
 </body>

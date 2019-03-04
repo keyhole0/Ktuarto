@@ -6,8 +6,9 @@ import * as util from "./js/quarto/gameutil/util";
 //プレイヤーとゲームシステム用意
 //const player1 = new GamePlayer('プレイヤー２');
 const yourPlayer = new GamePlayer('あなた');
-const aiPlayer = new AIPlayer('プレイヤー１', 'AiMontecarlo');
+const montePlayer = new AIPlayer('プレイヤー１', 'AiMontecarlo');
 const randPlayer = new AIPlayer('プレイヤー２', 'AiRandom');
+var aiPlayer = montePlayer;
 const gamesys = new GameSys(yourPlayer, aiPlayer);
 const display = new Display();
 gamesys.setDisplay(display);
@@ -25,6 +26,12 @@ display.setResult(div_result);
 
 //イベント
 button_gamestart.addEventListener('click', e=>{
+    let radio_iplaysfirst = document.getElementById('I_plays_first');
+    if(radio_iplaysfirst.checked){
+        gamesys.setPlayer(aiPlayer, yourPlayer);
+    }else{
+        gamesys.setPlayer(yourPlayer, aiPlayer);
+    }
     gamesys.start();
 });
 
