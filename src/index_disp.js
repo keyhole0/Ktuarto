@@ -34,7 +34,18 @@ export class Display{
     }
 
     dispBox(box){
-
+        let temp = 'ボックス';
+        if(box.piecelist){
+            let temp2 ='<p>';
+            let count = 0;
+            for(let p of box.piecelist){
+                temp2 += '<span data-ind="'+count+'">['+p.toNumList()+']</span> ';
+                ++count;
+            }
+            temp2 += '</p>';
+            temp += temp2;
+        }
+        this.canvas_box.innerHTML = temp;
     }
 
     dispPiece(piece){

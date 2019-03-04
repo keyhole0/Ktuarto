@@ -7,13 +7,14 @@
 <body>
   <section>
     <h3>ゲーム画面</h3>
+    <div>あなたの手番</div>
     <div><button id="gamestart">ゲームスタート</button></div>
     <div id="board">
       <table border="1">
-          <tr><td id="c00"></td><td id="c01"></td><td id="c02"></td><td id="c03"></td></tr>
-          <tr><td id="c10"></td><td id="c11"></td><td id="c12"></td><td id="c13"></td></tr>
-          <tr><td id="c20"></td><td id="c21"></td><td id="c22"></td><td id="c23"></td></tr>
-          <tr><td id="c30"></td><td id="c31"></td><td id="c32"></td><td id="c33"></td></tr>
+          <tr><td id="c00" data-left="0" data-top="0"></td><td id="c01" data-left="0" data-top="1"></td><td id="c02" data-left="0" data-top="2"></td><td id="c03" data-left="0" data-top="3"></td></tr>
+          <tr><td id="c10" data-left="1" data-top="0"></td><td id="c11" data-left="1" data-top="1"></td><td id="c12" data-left="1" data-top="2"></td><td id="c13" data-left="1" data-top="3"></td></tr>
+          <tr><td id="c20" data-left="2" data-top="0"></td><td id="c21" data-left="2" data-top="1"></td><td id="c22" data-left="2" data-top="2"></td><td id="c23" data-left="2" data-top="3"></td></tr>
+          <tr><td id="c30" data-left="3" data-top="0"></td><td id="c31" data-left="3" data-top="1"></td><td id="c32" data-left="3" data-top="2"></td><td id="c33" data-left="3" data-top="3"></td></tr>
       </table>
     </div>
     <div id="box">残っているコマ</div>

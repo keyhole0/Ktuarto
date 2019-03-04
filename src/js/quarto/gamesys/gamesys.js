@@ -8,10 +8,10 @@ export class GameSys{
     constructor(player0, player1){
         this.setPlayer(player0, player1);
         this.phases = [
-            new PhaseChoice(this, player0.playerno),
-            new PhasePut(this, player1.playerno),
-            new PhaseChoice(this, player1.playerno),
-            new PhasePut(this, player0.playerno),
+            new PhaseChoice(this, 0),
+            new PhasePut(this, 1),
+            new PhaseChoice(this, 1),
+            new PhasePut(this, 0),
         ];
     }
 
@@ -42,11 +42,21 @@ export class GameSys{
      * @param {GamePlayer} player1
      */
     setPlayer(player0, player1){
+        this.releasePlayer();
         this.players = [player0, player1];
         player0.setGamesys(this);
         player0.setPlayerNo(0);
         player1.setGamesys(this);
         player1.setPlayerNo(1);
+    }
+
+    releasePlayer(){
+        if(this.players == null)    return;
+        for(let p of this.players){
+            p.setGamesys(null);
+            p.setPlayerNo(null);
+        }
+        this.players = null;
     }
 
     setDisplay(display){
