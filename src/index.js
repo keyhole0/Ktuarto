@@ -6,10 +6,8 @@ import * as util from "./js/quarto/gameutil/util";
 //プレイヤーとゲームシステム用意
 //const player1 = new GamePlayer('プレイヤー２');
 const yourPlayer = new GamePlayer('あなた');
-const montePlayer = new AIPlayer('プレイヤー１', 'AiMontecarlo');
-const randPlayer = new AIPlayer('プレイヤー２', 'AiRandom');
-var aiPlayer = montePlayer;
-const gamesys = new GameSys(yourPlayer, aiPlayer);
+const aiPlayer = new AIPlayer('モンテ', 'AiMontecarlo');
+const gamesys = new GameSys();
 const display = new Display();
 gamesys.setDisplay(display);
 
@@ -26,15 +24,27 @@ display.setResult(div_result);
 
 //イベント
 button_gamestart.addEventListener('click', e=>{
-    let radio_iplaysfirst = document.getElementById('I_plays_first');
-    if(radio_iplaysfirst.checked){
-        gamesys.setPlayer(aiPlayer, yourPlayer);
-    }else{
-        gamesys.setPlayer(yourPlayer, aiPlayer);
+    let check_debug = document.getElementById('debug_player');
+    if(check_debug.checked){    //デバッグ用ゲーム起動
+        debugstart();
+        return;
     }
-    gamesys.start();
+
+    let radio_iplaysfirst = document.getElementById('I_plays_first');
+    if(radio_iplaysfirst.checked){  gameStartIfirst();
+    }else{  gameStartYoufirst();
+    }
 });
 
+function gameStartIfirst(){
+    gamesys.setPlayer(aiPlayer, yourPlayer);    //AIが先攻
+    gamesys.start();
+}
+
+function gameStartYoufirst(){
+    gamesys.setPlayer(yourPlayer, aiPlayer);    //AIが後攻
+    gamesys.start();
+}
 
 div_board.addEventListener('click', e=>{
     let src = e.srcElement;
@@ -65,4 +75,24 @@ div_box.addEventListener('click', e=>{
     yourPlayer.actionChoice(piece, call);
 });
 
+//デバッグ用のゲームスタート
+function debugstart(){
+    let p1 = document.getElementById('debug_player1');
+    let p2 = document.getElementById('debug_player2');
+    
+    let player1 = playerFactory(p1.value, 'プレイヤー１');
+    let player2 = playerFactory(p2.value, 'プレイヤー２');
 
+    gamesys.setPlayer(player1, player2);
+    gamesys.start();
+}
+
+//プレイヤーファクトリー
+function playerFactory(val, name){
+    switch(val){
+        case 'manual':  return new GamePlayer(name+'(手動)');
+        case 'random':  return new AIPlayer(name+'(ランダム)', 'AiRandom');
+        case 'monte':   return new AIPlayer(name+'(モンテ)', 'AiMontecarlo');
+    }
+    return null;
+}

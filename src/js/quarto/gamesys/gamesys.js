@@ -5,8 +5,7 @@ import {GamePlayer, AIPlayer} from './gameplayer';
 export class GameSys{
     
     //コンストラクタ
-    constructor(player0, player1){
-        this.setPlayer(player0, player1);
+    constructor(){
         this.phases = [
             new PhaseChoice(this, 0),
             new PhasePut(this, 1),

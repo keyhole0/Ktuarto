@@ -9,7 +9,11 @@ export class Display{
     }
 
     dispGameOver(winner){
-        this.canvas_result.innerHTML = 'winner:'+winner;
+        if(winner){
+            this.canvas_result.innerHTML = 'winner:'+winner;
+        }else{
+            this.canvas_result.innerHTML = '引き分け';
+        }
     }
 
     dispMain(board, box, piece){
