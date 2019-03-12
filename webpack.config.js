@@ -9,5 +9,11 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'docs')
+  },
+  module:{
+    rules:[
+      {test:/\.png$/, loader:'file-loader', query:{name:'img/[name].[ext]'}}
+      
+    ]
   }
 };

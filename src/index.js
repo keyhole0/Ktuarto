@@ -60,19 +60,20 @@ div_board.addEventListener('click', e=>{
     
     if(util.endPiece(gamesys.board, gamesys.choicePiece))   call = 'Quarto';    //勝てる場合はクアルト宣言
     yourPlayer.actionPut(left, top, call);
+    
 });
 
 div_box.addEventListener('click', e=>{
     let src = e.srcElement;
-    if(src.tagName != 'SPAN') return;
+    if(src.tagName != 'IMG') return;
     if(gamesys.choicePiece != null) return; //コマがすでに選択されている場合は何もしない。
 
     let index = Number(src.dataset.ind);
     let piece = gamesys.box.piecelist[index];
     let call = 'Non';
     if(gamesys.board.isQuarto()) call = 'Quarto';   //クアルトできる場合は宣言
-
     yourPlayer.actionChoice(piece, call);
+    
 });
 
 //デバッグ用のゲームスタート
@@ -80,10 +81,10 @@ function debugstart(){
     let p1 = document.getElementById('debug_player1');
     let p2 = document.getElementById('debug_player2');
     
-    let player1 = playerFactory(p1.value, 'プレイヤー１');
-    let player2 = playerFactory(p2.value, 'プレイヤー２');
+    let debugPlayer1 = playerFactory(p1.value, 'プレイヤー１');
+    let debugPlayer2 = playerFactory(p2.value, 'プレイヤー２');
 
-    gamesys.setPlayer(player1, player2);
+    gamesys.setPlayer(debugPlayer1, debugPlayer2);
     gamesys.start();
 }
 
