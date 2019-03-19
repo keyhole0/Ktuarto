@@ -1,6 +1,6 @@
-import {HiTechBoard} from '../gameobject/board.js';
-import {Box} from '../gameobject/box.js';
-import {GamePlayer, AIPlayer} from './gameplayer';
+import {HiTechBoard} from "../gameobject/board.js";
+import {Box} from "../gameobject/box.js";
+import {GamePlayer, AIPlayer} from "./gameplayer";
 
 export class GameSys{
     
@@ -66,7 +66,7 @@ export class GameSys{
         if(this.isGameEnd)  return; //ゲームが終わっている場合は受け付けない
 
         //現在のフェーズおよびプレイヤーで無いときは受け付けない。
-        //if(this.nowPhase != 'choice' || this.nowTurn != playerno) return;
+        //if(this.nowPhase != "choice" || this.nowTurn != playerno) return;
         
         //クアルト宣言処理
         if(this.checkQuarto(call))  return;  //ゲームが終わる場合は終了
@@ -81,7 +81,7 @@ export class GameSys{
         if(this.isGameEnd)  return; //ゲームが終わっている場合は受け付けない
 
         //現在のフェーズおよびプレイヤーで無いときは受け付けない。
-        //if(this.nowPhase != 'put' || this.nowTurn != playerno) return;
+        //if(this.nowPhase != "put" || this.nowTurn != playerno) return;
         
         //コマをボードに置く
         this.board.setBoard(left, top, this.choicePiece);
@@ -124,16 +124,16 @@ export class GameSys{
     disp(){
         this.display.dispMain(this.board, this.box, this.choicePiece);
         //this.dispBoard();
-        //console.log('choicePiece:'+((this.choicePiece)? this.choicePiece.toNumList():null));
-        //console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        //console.log("choicePiece:"+((this.choicePiece)? this.choicePiece.toNumList():null));
+        //console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 
     gameover(){
         let winner = null;
         if(this.winner != null) winner = this.players[this.winner].name;
         this.display.dispGameOver(winner);
-        //console.log('winner:'+this.players[this.winner].name);
-        //console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        //console.log("winner:"+this.players[this.winner].name);
+        //console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 
     nextPhase(){
@@ -193,130 +193,3 @@ export class PhasePut extends Phase{
         this.gamesys.nextPhase();
     }
 }
-
-/*
-export class GameSys{
-
-    //コンストラクタ
-    constructor(p1, p2){
-        this.board = new HiTechBoard([]);
-        this.box = new Box(null, this.board);
-        this.choicePiece = null;
-        this.isGameEnd = false;
-        this.winner = null; //先攻が勝ったときは1, 後攻が勝ったときは2
-    }
-
-    firstPhaseChoice(){
-        let result = this.phaseChoice(this.firstPlayer);
-        this.checkEnd(1, result);
-    }
-
-    firstPhasePut(){
-        let result = this.phasePut(this.firstPlayer);
-        this.checkEnd(1, result);
-    }
-
-    secondPhaseChoice(){
-        let result = this.phaseChoice(this.secondPlayer);
-        this.checkEnd(2, result);
-    }
-
-    secondPhasePut(){
-        let result = this.phasePut(this.secondPlayer);
-        this.checkEnd(2, result);
-    }
-
-    checkEnd(p, result){
-        //ゲーム終了フラグ
-        this.isGameEnd = (result != null);
-        
-        //勝者
-        if(result == "winner"){ //勝利
-            this.winner = p;
-        }else if(result == "loser"){ //負け
-            this.winner = 3 - p;
-        }else if(result == "draw"){ //引き分け
-
-        }
-    }
-
-    //コマ選択フェーズ
-    //引数：操作するプレイヤー
-    //戻り値："winner"   そのプレイヤーの勝ち
-    //       "loser"    そのプレイヤーの負け
-    //       null       ゲーム続行
-    phaseChoice(player){
-        //プレイ
-        let result = player.choice(this.board, this.box);
-        
-        //クアルト宣言処理
-        if(result.call == "Quarto"){
-            return (this.board.isQuarto())? "winner":"loser";
-        }
-
-        //選択したコマを確保
-        this.choicePiece = result.piece;
-        this.box.remove(this.choicePiece);
-
-        //続行
-        return null;
-    }
-
-    phaseChoice(piece, call){
-        
-        //クアルト宣言処理
-        if(call == "Quarto"){
-            return (this.board.isQuarto())? "winner":"loser";
-        }
-
-        //選択したコマを確保
-        this.choicePiece = piece;
-        this.box.remove(this.choicePiece);
-
-        //続行
-        return null;
-    }
-
-    //コマ置くフェーズ
-    //引数：操作するプレイヤー
-    //戻り値："winner"   そのプレイヤーの勝ち
-    //       "loser"    そのプレイヤーの負け
-    //       "draw"     引き分け
-    //       null       ゲーム続行
-    phasePut(player){
-        //プレイ
-        let result =  player.put(this.board, this.choicePiece);
-        
-        //コマをボードに置く
-        this.board.setBoard(result.left, result.top, this.choicePiece);
-        this.choicePiece = null;
-
-        //クアルト宣言処理
-        if(result.call == "Quarto"){
-            return (this.board.isQuarto())? "winner":"loser";
-        }
-
-        //ボックスが空なら引き分け
-        if(this.box.isEmpty()) return "draw";
-
-        //続行
-        return null;
-    }
-
-    dispBoard(){
-        for(let i=0; i<4; ++i){
-            let l = [];
-            for(let j=0; j<4; ++j){
-                let p = this.board.onboard[i][j];
-                if(p != null){
-                    p = ''+p.toNumList();
-                }else{
-                    p = "       ";
-                }
-                l[j] = p;
-            }
-            console.log(l);
-        }
-    }
-}
-*/

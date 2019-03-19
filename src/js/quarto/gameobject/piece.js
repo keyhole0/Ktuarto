@@ -19,10 +19,10 @@ export class Piece{
         let t = (this.param[2]  == 1)? "hollow"   : "solid";
         let h = (this.param[3]  == 1)? "tall"     : "short";
         return {
-            'color':c,
-            'shape':s,
-            'top':t,
-            'height':h,
+            "color":c,
+            "shape":s,
+            "top":t,
+            "height":h,
         };
     }
 
@@ -37,10 +37,10 @@ export class Piece{
     
     static getInstance(pieceDict){
         //文字列で格納された値を0,1に変換する
-        let c   = (pieceDict['color']  == "light"   )? 1:0;
-        let s   = (pieceDict['shape']  == "circular")? 1:0;
-        let t   = (pieceDict['top']    == "hollow"  )? 1:0;
-        let h   = (pieceDict['height'] == "tall"    )? 1:0;
+        let c   = (pieceDict["color"]  == "light"   )? 1:0;
+        let s   = (pieceDict["shape"]  == "circular")? 1:0;
+        let t   = (pieceDict["top"]    == "hollow"  )? 1:0;
+        let h   = (pieceDict["height"] == "tall"    )? 1:0;
 
         //0,1からインデックスを作成する
         let index = (c<<0) + (s<<1) + (t<<2) + (h<<3);

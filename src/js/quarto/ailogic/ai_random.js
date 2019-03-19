@@ -36,8 +36,8 @@ export class AiRandom extends ai_base.AiBase{
         let res_call = (in_board.isQuarto())? "Quarto":"Non";
 
         return {
-            'piece':res_piece.toDict(),
-            'call':res_call,
+            "piece":res_piece.toDict(),
+            "call":res_call,
         };
     }
 
@@ -76,9 +76,9 @@ export class AiRandom extends ai_base.AiBase{
         let res_call = (in_board.isQuarto())? "Quarto":"Non";
 
         return {
-            'call':res_call,
-            'left':res_left,
-            'top':res_top,
+            "call":res_call,
+            "left":res_left,
+            "top":res_top,
         };
     }
 }

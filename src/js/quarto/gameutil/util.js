@@ -148,15 +148,15 @@ export class p{
     //_file=None
 
     static open(filename){
-        //print('open file ' + filename)
-        //cls._file = open(filename,'w',encoding='utf-8_sig')
+        //print("open file " + filename)
+        //cls._file = open(filename,"w",encoding="utf-8_sig")
     }
 
     static close(){
         //if(cls._file is not None){
         //    cls._file.close()
         //    cls._file = None
-        //    print('close file ')
+        //    print("close file ")
         //}
     }
 

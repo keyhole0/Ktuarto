@@ -73,8 +73,8 @@ export class AiMontecarlo extends ai_base.AiBase{
         let res_call = (in_board.isQuarto())? "Quarto":"Non";
 
         return {
-            'piece':res_piece.toDict(),
-            'call':res_call,
+            "piece":res_piece.toDict(),
+            "call":res_call,
         };
     }
 
@@ -98,9 +98,9 @@ export class AiMontecarlo extends ai_base.AiBase{
         let res_call = (in_board.isQuarto())? "Quarto":"Non";
 
         return {
-            'call':res_call,
-            'left':res_left,
-            'top':res_top,
+            "call":res_call,
+            "left":res_left,
+            "top":res_top,
         };
     }
 }
@@ -565,7 +565,7 @@ class MonteBranchInfo{
         }
 
         //情報の印字
-        //util.p.print('depth\tplayer\tphase\tpattern\tisLeaf\twinner\ttotal\tcount\twin\tdraw\twinpre\tdrawper\twinucb\tdrawucb')
+        //util.p.print("depth\tplayer\tphase\tpattern\tisLeaf\twinner\ttotal\tcount\twin\tdraw\twinpre\tdrawper\twinucb\tdrawucb")
         //this.myprint(0)
         //this.simpleLog()
         

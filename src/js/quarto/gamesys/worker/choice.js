@@ -1,6 +1,6 @@
-import {HiTechBoard} from '../../gameobject/board';
-import {Box} from '../../gameobject/box';
-import {aiFactory} from './ai_factory';
+import {HiTechBoard} from "../../gameobject/board";
+import {Box} from "../../gameobject/box";
+import {aiFactory} from "./ai_factory";
 
 onmessage = function(e) {
     let ai = aiFactory(e.data.aiName);
