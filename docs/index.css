@@ -1,21 +1,13 @@
+html,body{
+    height:100%;
+}
 body{
+    height:100%;
+    margin:0;
+    padding:0;
     text-align:center;
+    background-color:rgb(231, 199, 129);
 }
-#board{
-    text-align:center;
-}
-#box{
-    width:200px;
-    float:left;
-}
-#piece{
-    width:200px;
-}
-
-canvas{
-    border:solid 1px;
-}
-
 table{
     margin: auto;
 }
@@ -24,5 +16,42 @@ td{
     height:90px;
 }
 .gamediv{
-    float: left;
+}
+#board{
+    text-align:center;
+}
+#box{
+    margin: auto;
+    float:left;
+    width:200px;
+}
+#piece{
+    margin: auto;
+    float:left;
+    width:200px;
+}
+#quartogame{
+    margin:0;
+    width:100%;
+    height:100%;
+}
+
+#top{
+    margin:0;
+    width:100%;
+    height:100%;
+}
+#title{
+    margin:0;
+    padding-top: 10%;
+}
+#description{
+    padding-top: 10%;
+}
+#play{
+    padding-top:5%;
+}
+#open_game{
+    width:5cm;
+    height:1.5cm;
 }

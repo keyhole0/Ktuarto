@@ -5,12 +5,18 @@
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-  <section>
-    <h3>モンテ（仮）</h3>
-    モンテ（仮）とは、ボードゲーム「Quarto」用対戦AIです。
-  </section>
-  <section>
-    <h3>AIと対戦する</h3>
+  <div id="top">
+    <h1 id="title">モンテ（仮）</h1>
+    <div id="description">
+      <p>モンテ（仮）とは、ボードゲーム「Quarto」用対戦AIです。</p>
+      <a href="https://www.youtube.com/watch?v=EeE3Rz6sCHo">Quartoとは</a>
+    </div>
+    <div id="play">
+      <button id="open_game">AIと対戦する</button>
+    </div>
+  </div>
+  <div id="quartogame" style="display:none;">
+    <div id="close_game"></div>
     <div>
       <button id="gamestart_ai_first">AIが先手</button>
       <button id="gamestart_you_first">あなたが先手</button>
@@ -26,7 +32,7 @@
     <div id="box" class="gamediv">残っているコマ</div>
     <div id="piece" class="gamediv">プレイヤー1の選択コマ</div>
     <div id="result"></div>
-  </section>
+  </div>
 </body>
 <script src="index.js"></script>
 </html>
