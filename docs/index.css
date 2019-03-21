@@ -1,8 +1,15 @@
 body{
     text-align:center;
 }
-div#board{
+#board{
     text-align:center;
+}
+#box{
+    width:200px;
+    float:left;
+}
+#piece{
+    width:200px;
 }
 
 canvas{
@@ -16,4 +23,6 @@ td{
     width:90px;
     height:90px;
 }
-
+.gamediv{
+    float: left;
+}
