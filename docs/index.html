@@ -12,25 +12,46 @@
       <a href="https://www.youtube.com/watch?v=EeE3Rz6sCHo">Quartoとは</a>
     </div>
     <div id="play">
-      <button id="open_game">AIと対戦する</button>
+      <!--<button id="open_game">AIと対戦する</button>-->
     </div>
   </div>
-  <div id="quartogame" style="display:none;">
+  <div id="quartogame" style="">
     <div id="close_game"></div>
-    <div>
-      <button id="gamestart_ai_first">AIが先手</button>
-      <button id="gamestart_you_first">あなたが先手</button>
+    <h3>AIと対戦する</h3>
+    <div id="startbutton">
+      <button id="gamestart_ai_first" class="startbutton">AIが先手</button>
+      <button id="gamestart_you_first" class="startbutton">あなたが先手</button>
     </div>
-    <div id="board" class="gamediv">
-      <table border="1">
-        <tr><td id="c00" data-left="0" data-top="0"></td><td id="c01" data-left="0" data-top="1"></td><td id="c02" data-left="0" data-top="2"></td><td id="c03" data-left="0" data-top="3"></td></tr>
-        <tr><td id="c10" data-left="1" data-top="0"></td><td id="c11" data-left="1" data-top="1"></td><td id="c12" data-left="1" data-top="2"></td><td id="c13" data-left="1" data-top="3"></td></tr>
-        <tr><td id="c20" data-left="2" data-top="0"></td><td id="c21" data-left="2" data-top="1"></td><td id="c22" data-left="2" data-top="2"></td><td id="c23" data-left="2" data-top="3"></td></tr>
-        <tr><td id="c30" data-left="3" data-top="0"></td><td id="c31" data-left="3" data-top="1"></td><td id="c32" data-left="3" data-top="2"></td><td id="c33" data-left="3" data-top="3"></td></tr>
-      </table>
+    <div style="width:650px;height:450px;margin:auto;">
+      <div id="board" class="gamediv">
+        <table border="1">
+          <tr><td id="c00" data-left="0" data-top="0"></td><td id="c01" data-left="0" data-top="1"></td><td id="c02" data-left="0" data-top="2"></td><td id="c03" data-left="0" data-top="3"></td></tr>
+          <tr><td id="c10" data-left="1" data-top="0"></td><td id="c11" data-left="1" data-top="1"></td><td id="c12" data-left="1" data-top="2"></td><td id="c13" data-left="1" data-top="3"></td></tr>
+          <tr><td id="c20" data-left="2" data-top="0"></td><td id="c21" data-left="2" data-top="1"></td><td id="c22" data-left="2" data-top="2"></td><td id="c23" data-left="2" data-top="3"></td></tr>
+          <tr><td id="c30" data-left="3" data-top="0"></td><td id="c31" data-left="3" data-top="1"></td><td id="c32" data-left="3" data-top="2"></td><td id="c33" data-left="3" data-top="3"></td></tr>
+        </table>
+      </div>
+      <div id="box" class="gamediv">残りのコマ<p>
+          <img width="50" height="80" src="img/00.png" data-ind="0"
+          ><img width="50" height="80" src="img/01.png" data-ind="1"
+          ><img width="50" height="80" src="img/02.png" data-ind="2"
+          ><img width="50" height="80" src="img/03.png" data-ind="3"
+          ><img width="50" height="80" src="img/04.png" data-ind="4"
+          ><img width="50" height="80" src="img/05.png" data-ind="5"
+          ><img width="50" height="80" src="img/06.png" data-ind="6"
+          ><img width="50" height="80" src="img/07.png" data-ind="7"
+          ><img width="50" height="80" src="img/08.png" data-ind="8"
+          ><img width="50" height="80" src="img/09.png" data-ind="9"
+          ><img width="50" height="80" src="img/10.png" data-ind="10"
+          ><img width="50" height="80" src="img/11.png" data-ind="11"
+          ><img width="50" height="80" src="img/12.png" data-ind="12"
+          ><img width="50" height="80" src="img/13.png" data-ind="13"
+          ><img width="50" height="80" src="img/14.png" data-ind="14"
+          ><img width="50" height="80" src="img/15.png" data-ind="15">
+        </p>
+      </div>
+      <div id="piece" class="gamediv">選択されたコマ</div>
     </div>
-    <div id="box" class="gamediv">残っているコマ</div>
-    <div id="piece" class="gamediv">プレイヤー1の選択コマ</div>
     <div id="result"></div>
   </div>
 </body>

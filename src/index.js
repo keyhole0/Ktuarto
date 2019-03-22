@@ -6,7 +6,7 @@ import * as util from "./js/quarto/gameutil/util";
 //プレイヤーとゲームシステム用意
 //const player1 = new GamePlayer("プレイヤー２");
 const yourPlayer = new GamePlayer("あなた");
-const aiPlayer = new AIPlayer("モンテ", "AiMontecarlo");
+const aiPlayer = new AIPlayer("AI", "AiMontecarlo");
 const gamesys = new GameSys();
 const display = new Display();
 gamesys.setDisplay(display);

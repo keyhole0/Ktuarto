@@ -46,7 +46,7 @@ export class Display{
 
     dispGameOver(winner){
         if(winner){
-            this.canvas_result.innerHTML = "winner:"+winner;
+            this.canvas_result.innerHTML = "勝者："+winner;
         }else{
             this.canvas_result.innerHTML = "引き分け";
         }
@@ -84,12 +84,12 @@ export class Display{
                 ++count;
             }
         }
-        this.canvas_box.innerHTML = "ボックス";
+        this.canvas_box.innerHTML = "残りのコマ";
         this.canvas_box.appendChild(temp);
     }
 
     dispPiece(piece){
-        this.canvas_piece.innerHTML = "選択されたコマ：";
+        this.canvas_piece.innerHTML = "選択されたコマ";
         if(piece){
             let pieceimg = generatePieceImg(piece.index);
             this.canvas_piece.appendChild(pieceimg);
