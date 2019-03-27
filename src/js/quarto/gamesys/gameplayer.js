@@ -50,12 +50,12 @@ export class AIPlayer extends GamePlayer{
         this.aiName = aiName;
         this.choiceWorker = new Worker('./worker/choice.js');
         this.putWorker = new Worker('./worker/put.js');
-        this.choiceWorker.onmessage = (e) => {
+        this.choiceWorker.onmessage = function(e) {
             let piece = Piece.getInstance(e.data.piece);
             let call = e.data.call;
             this.actionChoice(piece, call);
         };
-        this.putWorker.onmessage = (e) => {
+        this.putWorker.onmessage = function(e) {
             let left = e.data.left;
             let top = e.data.top;
             let call = e.data.call;
@@ -65,21 +65,21 @@ export class AIPlayer extends GamePlayer{
     }
 
     /** */
-    runAiChoice(){
+    runAiChoice() {
         this.choiceWorker.postMessage({
-            aiName:this.aiName, //AIクラスのインスタンスが直接渡せないので名前を渡して向こうで生成する。
-            in_board:this.gamesys.board.toDict(),
-            in_box:this.gamesys.box.toDict(),
+            aiName: this.aiName, //AIクラスのインスタンスが直接渡せないので名前を渡して向こうで生成する。
+            in_board: this.gamesys.board.toDict(),
+            in_box: this.gamesys.box.toDict(),
         });
     }
 
     /** */
-    runAiPut(){
+    runAiPut() {
         this.putWorker.postMessage({
-            aiName:this.aiName, //AIクラスのインスタンスが直接渡せないので名前を渡して向こうで生成する。
-            in_board:this.gamesys.board.toDict(), 
-            in_piece:this.gamesys.choicePiece.toDict(),
+            aiName: this.aiName, //AIクラスのインスタンスが直接渡せないので名前を渡して向こうで生成する。
+            in_board: this.gamesys.board.toDict(),
+            in_piece: this.gamesys.choicePiece.toDict(),
         });
     }
-}
+};
 
