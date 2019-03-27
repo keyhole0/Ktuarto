@@ -1,11 +1,11 @@
-import {HiTechBoard} from "../gameobject/board.js";
-import {Box} from "../gameobject/box.js";
-import {GamePlayer, AIPlayer} from "./gameplayer";
+import {HiTechBoard} from '../gameobject/board.js';
+import {Box} from '../gameobject/box.js';
+import {GamePlayer, AIPlayer} from './gameplayer';
 
 export class GameSys{
-    
+
     //コンストラクタ
-    constructor(){
+    constructor() {
         this.phases = [
             new PhaseChoice(this, 0),
             new PhasePut(this, 1),
@@ -14,7 +14,7 @@ export class GameSys{
         ];
     }
 
-    start(){
+    start() {
         this.board = new HiTechBoard([]);
         this.box = new Box(null, this.board);
         this.choicePiece = null;
@@ -27,20 +27,20 @@ export class GameSys{
         this.nowPhase().runAi();
     }
 
-    nowPhase(){
+    nowPhase() {
         return this.phases[this.phasecount];
     }
 
-    nowPlayerNo(){
+    nowPlayerNo() {
         return this.phases[this.phasecount].playerno;
     }
 
     /**
-     * 
+     *
      * @param {GamePlayer} player0
      * @param {GamePlayer} player1
      */
-    setPlayer(player0, player1){
+    setPlayer(player0, player1) {
         this.releasePlayer();
         this.players = [player0, player1];
         player0.setGamesys(this);
@@ -49,27 +49,27 @@ export class GameSys{
         player1.setPlayerNo(1);
     }
 
-    releasePlayer(){
-        if(this.players == null)    return;
-        for(let p of this.players){
+    releasePlayer() {
+        if (this.players == null) return;
+        for (let p of this.players) {
             p.setGamesys(null);
             p.setPlayerNo(null);
         }
         this.players = null;
     }
 
-    setDisplay(display){
+    setDisplay(display) {
         this.display = display;
     }
 
-    choice(piece, call){
-        if(this.isGameEnd)  return; //ゲームが終わっている場合は受け付けない
+    choice(piece, call) {
+        if (this.isGameEnd) return; //ゲームが終わっている場合は受け付けない
 
         //現在のフェーズおよびプレイヤーで無いときは受け付けない。
         //if(this.nowPhase != "choice" || this.nowTurn != playerno) return;
-        
+
         //クアルト宣言処理
-        if(this.checkQuarto(call))  return;  //ゲームが終わる場合は終了
+        if (this.checkQuarto(call)) return;  //ゲームが終わる場合は終了
 
         //選択したコマを確保
         this.choicePiece = piece;
@@ -77,30 +77,30 @@ export class GameSys{
 
     }
 
-    put(left, top, call){
-        if(this.isGameEnd)  return; //ゲームが終わっている場合は受け付けない
+    put(left, top, call) {
+        if (this.isGameEnd) return; //ゲームが終わっている場合は受け付けない
 
         //現在のフェーズおよびプレイヤーで無いときは受け付けない。
         //if(this.nowPhase != "put" || this.nowTurn != playerno) return;
-        
+
         //コマをボードに置く
         this.board.setBoard(left, top, this.choicePiece);
         this.choicePiece = null;
-        
+
         //クアルト宣言処理
-        if(this.checkQuarto(call))  return;  //ゲームが終わる場合は終了
-        if(this.checkBox())  return;
+        if (this.checkQuarto(call)) return;  //ゲームが終わる場合は終了
+        if (this.checkBox()) return;
 
     }
 
-    checkQuarto(call){
-        if(call == "Quarto"){
+    checkQuarto(call) {
+        if (call == 'Quarto') {
             let playerno = this.nowPhase().playerno;
             //クアルト宣言があったら終了処理
-            if(this.board.isQuarto()){
+            if (this.board.isQuarto()) {
                 this.winner = playerno; //正しく宣言できていたらそのプレイヤーの勝ち
-            }else{
-                this.winner = 1-playerno; //誤った宣言の場合はもう一方のプレイヤーの勝ち
+            }else {
+                this.winner = 1 - playerno; //誤った宣言の場合はもう一方のプレイヤーの勝ち
             }
 
             //ゲーム終了フラグON
@@ -109,87 +109,87 @@ export class GameSys{
         return this.isGameEnd;
     }
 
-    checkBox(){
-        if(this.box.isEmpty()){
+    checkBox() {
+        if (this.box.isEmpty()) {
             this.isGameEnd = true;
         }
         return this.isGameEnd;
     }
 
-    dispInit(){
+    dispInit() {
         this.display.dispInit();
         this.display.dispMain(this.board, this.box, this.choicePiece);
     }
 
-    disp(){
+    disp() {
         this.display.dispMain(this.board, this.box, this.choicePiece);
         //this.dispBoard();
         //console.log("choicePiece:"+((this.choicePiece)? this.choicePiece.toNumList():null));
         //console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 
-    gameover(){
+    gameover() {
         let winner = null;
-        if(this.winner != null) winner = this.players[this.winner].name;
+        if (this.winner != null) winner = this.players[this.winner].name;
         this.display.dispGameOver(winner);
         //console.log("winner:"+this.players[this.winner].name);
         //console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 
-    nextPhase(){
-        if(this.isGameEnd){
+    nextPhase() {
+        if (this.isGameEnd) {
             this.gameover();
             return;
-        }  
+        }
 
         //フェーズカウントを進める。
-        this.phasecount = (this.phasecount+1) % this.phases.length;
-        
+        this.phasecount = (this.phasecount + 1) % this.phases.length;
+
         //AIの実行
         this.nowPhase().runAi();
     }
-}
+};
 
 export class Phase{
-    constructor(gamesys, playerno){
+    constructor(gamesys, playerno) {
         this.gamesys = gamesys;
         this.playerno = playerno;
     }
-}
+};
 
 export class PhaseChoice extends Phase{
-    runAi(){
+    runAi() {
         let player = this.gamesys.players[this.playerno];
-        if(player instanceof AIPlayer){
+        if (player instanceof AIPlayer) {
             player.runAiChoice();
         }
     }
-    setParam(piece, call){
+    setParam(piece, call) {
         this.piece = piece;
         this.call = call;
     }
-    action(){
+    action() {
         this.gamesys.choice(this.piece, this.call);
         this.gamesys.disp();
         this.gamesys.nextPhase();
     }
-}
+};
 
 export class PhasePut extends Phase{
-    runAi(){
+    runAi() {
         let player = this.gamesys.players[this.playerno];
-        if(player instanceof AIPlayer){
+        if (player instanceof AIPlayer) {
             player.runAiPut();
         }
     }
-    setParam(left, top, call){
+    setParam(left, top, call) {
         this.left = left;
         this.top = top;
         this.call = call;
     }
-    action(){
+    action() {
         this.gamesys.put(this.left, this.top, this.call);
         this.gamesys.disp();
         this.gamesys.nextPhase();
     }
-}
+};
