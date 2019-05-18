@@ -3,12 +3,12 @@ body{
     margin:0;
     padding:0;
     text-align:center;
-    background-color:rgb(231, 199, 129);
+    background-color:#FFF2DD;
     /*background: linear-gradient(rgb(177, 254, 255), rgb(150, 192, 255));*/
 }
 table{
     margin: auto;
-    background-color:white;
+    background-color:#FFF2DD;
 }
 td{
     width:100px;
@@ -35,14 +35,17 @@ h1, h2, h3{
     margin:0;
 }
 
+header{
+    margin:0;
+    background-color:#a67b2d;
+}
 #top{
     margin:0;
 }
 #title{
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-#description{
+    font-family: 'メイリオ',sans-serif;
+    font-size: 60px;
+    padding: 25px 0px;
 }
 #play{
     padding-top:40px;
@@ -59,3 +62,17 @@ h1, h2, h3{
     width:4cm;
     height:1cm;
 }
+
+.btn-flat-double-border {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: #67c5ff;
+    border: double 4px #67c5ff;
+    border-radius: 3px;
+    transition: .4s;
+    background: #ebc175;
+  }
+  .btn-flat-double-border:hover {
+    background: #fffbef;
+  }
