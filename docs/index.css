@@ -3,52 +3,74 @@ body{
     margin:0;
     padding:0;
     text-align:center;
-    background-color:#FFF2DD;
+    background-color:rgb(255, 255, 255);
     /*background: linear-gradient(rgb(177, 254, 255), rgb(150, 192, 255));*/
 }
 table{
     margin: auto;
-    background-color:#FFF2DD;
+    background-color:rgb(222, 222, 222);
+    border:solid 3px #aaaaaa;
+    border-radius: 10px;
+    border-spacing: 10px;
 }
 td{
+    margin:10px;
     width:100px;
     height:100px;
+    border:solid 5px #ffffff;
+    border-radius: 70px;
 }
 h1, h2, h3{
     margin:0;
 }
+h2{
+    padding-top:30px;
+}
 #board{
+    position: absolute;
+    left:15px;
+    top:15px;
     text-align:center;
-    float: left;
 }
 #box{
+    position: absolute;
+    right:15px;
+    top:15px;
     margin: auto;
-    float:left;
     width:200px;
+    height:400px;
+    border:solid 1px;
 }
 #piece{
+    position: absolute;
+    right:15px;
+    top:415px;
     margin: auto;
-    float:left;
     width:200px;
+    height:100px;
+    border:solid 1px;
+}
+#result{
+	position: absolute;
+	bottom: 0;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 25px;
 }
 #quartogame{
     margin:0;
 }
-
-header{
-    margin:0;
-    background-color:#a67b2d;
-}
 #top{
     margin:0;
+    padding: 20px;
+    background-color: #ffbc3e;
 }
 #title{
     font-family: 'メイリオ',sans-serif;
     font-size: 60px;
     padding: 25px 0px;
-}
-#play{
-    padding-top:40px;
 }
 #open_game{
     width:5cm;
@@ -62,17 +84,27 @@ header{
     width:4cm;
     height:1cm;
 }
-
 .btn-flat-double-border {
     display: inline-block;
     padding: 0.5em 1em;
     text-decoration: none;
-    color: #67c5ff;
-    border: double 4px #67c5ff;
-    border-radius: 3px;
+    border:solid 1px #aaaaaa;
+    border-radius: 4px;
     transition: .4s;
-    background: #ebc175;
-  }
-  .btn-flat-double-border:hover {
+    background: #ffbc3e;
+}
+.btn-flat-double-border:hover {
     background: #fffbef;
-  }
+}
+
+#gamearea{
+    position: relative;
+    width:725px;
+    height:550px;
+    margin:auto;
+    margin-bottom:20px;
+    padding:15px;
+    border:solid 1px #aaaaaa;
+    border-radius: 10px;
+    background:#ffffff;
+}

@@ -5,28 +5,24 @@
   <!-- <title>ktuarto</title> -->
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="index.css">
+  <base target="_blank">
 </head>
 <body>
-  <header>
-    <h1 id="title">クトゥアルト</h1>
-  </header>
   <div id="top">
+    <h1 id="title">クトゥアルト</h1>
     <div id="description">
       <p>クトゥアルトとは、ボードゲーム「Quarto」用対戦AIです。</p>
       <a href="https://www.youtube.com/watch?v=EeE3Rz6sCHo">Quartoとは</a>
     </div>
-    <div id="play">
-      <!--<button id="open_game">AIと対戦する</button>-->
-    </div>
   </div>
   <div id="quartogame">
     <div id="close_game"></div>
-    <h3>AIと対戦する</h3>
+    <h2>AIと対戦する</h2>
     <div id="startbutton">
       <button id="gamestart_ai_first" class="startbutton btn-flat-double-border">AIが先手</button>
       <button id="gamestart_you_first" class="startbutton btn-flat-double-border">あなたが先手</button>
     </div>
-    <div style="width:650px;height:450px;margin:auto;">
+    <div id="gamearea">
       <div id="board" class="gamediv">
         <table border="1">
           <tr><td id="c00" data-left="0" data-top="0"></td><td id="c01" data-left="0" data-top="1"></td><td id="c02" data-left="0" data-top="2"></td><td id="c03" data-left="0" data-top="3"></td></tr>
@@ -35,7 +31,7 @@
           <tr><td id="c30" data-left="3" data-top="0"></td><td id="c31" data-left="3" data-top="1"></td><td id="c32" data-left="3" data-top="2"></td><td id="c33" data-left="3" data-top="3"></td></tr>
         </table>
       </div>
-      <div id="box" class="gamediv">残りのコマ<p>
+      <div id="box" class="gamediv"><p>
           <img width="50" height="80" src="img/00.png" data-ind="0"
           ><img width="50" height="80" src="img/01.png" data-ind="1"
           ><img width="50" height="80" src="img/02.png" data-ind="2"
@@ -54,9 +50,9 @@
           ><img width="50" height="80" src="img/15.png" data-ind="15">
         </p>
       </div>
-      <div id="piece" class="gamediv">選択されたコマ</div>
+      <div id="piece" class="gamediv"><p>選択されたコマ</p></div>
+      <div id="result"></div>
     </div>
-    <div id="result"></div>
   </div>
 </body>
 <script src="index.js"></script>
