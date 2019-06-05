@@ -119,21 +119,26 @@ export class GameSys{
     dispInit() {
         this.display.dispInit();
         this.display.dispMain(this.board, this.box, this.choicePiece);
+        this.dispTurn();
     }
 
     disp() {
         this.display.dispMain(this.board, this.box, this.choicePiece);
-        //this.dispBoard();
-        //console.log("choicePiece:"+((this.choicePiece)? this.choicePiece.toNumList():null));
-        //console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    }
+
+    dispTurn(){
+        let phase = this.nowPhase();
+        let step = 'put';
+        if(phase instanceof PhaseChoice){
+            step = 'choice';
+        }
+        this.display.dispTurn(this.players[phase.playerno].name, step);
     }
 
     gameover() {
         let winner = null;
         if (this.winner != null) winner = this.players[this.winner].name;
         this.display.dispGameOver(winner);
-        //console.log("winner:"+this.players[this.winner].name);
-        //console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 
     nextPhase() {
@@ -144,6 +149,9 @@ export class GameSys{
 
         //フェーズカウントを進める。
         this.phasecount = (this.phasecount + 1) % this.phases.length;
+
+        //現在のターンを表示
+        this.dispTurn();
 
         //AIの実行
         this.nowPhase().runAi();

@@ -47,19 +47,23 @@ export class AIPlayer extends GamePlayer{
      */
     constructor(name, aiName) {
         super(name);
-        this.aiName = aiName;
-        this.choiceWorker = new Worker('./worker/choice.js');
-        this.putWorker = new Worker('./worker/put.js');
-        this.choiceWorker.onmessage = function(e) {
+
+        let that = this;
+        that.aiName = aiName;
+        that.choiceWorker = new Worker('./worker/choice.js');
+        that.putWorker = new Worker('./worker/put.js');
+
+        that.choiceWorker.onmessage = function(e){
             let piece = Piece.getInstance(e.data.piece);
             let call = e.data.call;
-            this.actionChoice(piece, call);
+            that.actionChoice(piece, call);
         };
-        this.putWorker.onmessage = function(e) {
+
+        that.putWorker.onmessage = function(e){
             let left = e.data.left;
             let top = e.data.top;
             let call = e.data.call;
-            this.actionPut(left, top, call);
+            that.actionPut(left, top, call);
         };
 
     }

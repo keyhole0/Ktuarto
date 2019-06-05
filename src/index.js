@@ -4,25 +4,25 @@ import {Display} from './index_disp';
 import * as util from './js/quarto/gameutil/util';
 
 //プレイヤーとゲームシステム用意
-//const player1 = new GamePlayer("プレイヤー２");
 const yourPlayer = new GamePlayer('あなた');
-const aiPlayer = new AIPlayer('AI', 'AiMontecarlo');
+const aiPlayer = new AIPlayer('クトゥアルト', 'AiMontecarlo');
 const gamesys = new GameSys();
 const display = new Display();
 gamesys.setDisplay(display);
 
 //エレメント取得
-//const button_gamestart = document.getElementById("gamestart");
 const button_gamestart_ai = document.getElementById('gamestart_ai_first');
 const button_gamestart_you = document.getElementById('gamestart_you_first');
 const div_board = document.getElementById('board');
 const div_box = document.getElementById('box');
 const div_piece = document.getElementById('piece');
 const div_result = document.getElementById('result');
+const div_turn = document.getElementById('turn');
 display.setBoard(div_board);
 display.setBox(div_box);
 display.setPiece(div_piece);
 display.setResult(div_result);
+display.setTurn(div_turn);
 
 //イベント
 button_gamestart_ai.addEventListener('click', function(e) {

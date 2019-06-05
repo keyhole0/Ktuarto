@@ -39,6 +39,7 @@ export class Display{
     setBox(canvas_box) {this.canvas_box = canvas_box;}
     setPiece(canvas_piece) {this.canvas_piece = canvas_piece;}
     setResult(canvas_result) {this.canvas_result = canvas_result;}
+    setTurn(canvas_turn){this.canvas_turn = canvas_turn;}
 
     dispInit() {
         this.canvas_result.innerHTML = '';
@@ -58,6 +59,15 @@ export class Display{
         this.dispPiece(piece);
     }
 
+    dispTurn(palyer, step){
+        if(step == 'choice'){
+            step = 'コマを選択';
+        }else{
+            step = 'コマを置く';
+        }
+        this.canvas_turn.innerHTML = palyer + 'が' + step;
+    }
+
     dispBoard(board) {
         for (let i = 0; i < 4; ++i) {
             for (let j = 0; j < 4; ++j) {
@@ -74,22 +84,20 @@ export class Display{
     }
 
     dispBox(box) {
-        let temp = document.createElement('p');
+        this.canvas_box.innerHTML = '';
         if (box.piecelist) {
             let count = 0;
             for (let p of box.piecelist) {
                 let pieceimg = generatePieceImg(p.index);
                 pieceimg.dataset.ind = count;
-                temp.appendChild(pieceimg);
+                this.canvas_box.appendChild(pieceimg);
                 ++count;
             }
         }
-        this.canvas_box.innerHTML = '残りのコマ';
-        this.canvas_box.appendChild(temp);
     }
 
     dispPiece(piece) {
-        this.canvas_piece.innerHTML = '選択されたコマ';
+        this.canvas_piece.innerHTML = '';
         if (piece) {
             let pieceimg = generatePieceImg(piece.index);
             this.canvas_piece.appendChild(pieceimg);
