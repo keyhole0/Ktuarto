@@ -12,7 +12,7 @@
     <h1 id="title">クトゥアルト</h1>
     <div id="description">
       <p>クトゥアルトとは、ボードゲーム「Quarto」用対戦AIです。</p>
-      <a href="https://www.youtube.com/watch?v=EeE3Rz6sCHo">Quartoとは</a>
+      <a href="https://www.youtube.com/watch?v=EeE3Rz6sCHo">Quartoとは？</a>
     </div>
   </div>
   <div id="quartogame">
@@ -23,6 +23,7 @@
       <button id="gamestart_you_first" class="startbutton btn-flat-double-border">あなたが先手</button>
     </div>
     <div id="gamearea">
+      <div id="turn_wrap"><span>手番：</span><span id="turn"></span></div>
       <div id="board" class="gamediv">
         <table border="1">
           <tr><td id="c00" data-left="0" data-top="0"></td><td id="c01" data-left="0" data-top="1"></td><td id="c02" data-left="0" data-top="2"></td><td id="c03" data-left="0" data-top="3"></td></tr>
@@ -31,7 +32,8 @@
           <tr><td id="c30" data-left="3" data-top="0"></td><td id="c31" data-left="3" data-top="1"></td><td id="c32" data-left="3" data-top="2"></td><td id="c33" data-left="3" data-top="3"></td></tr>
         </table>
       </div>
-      <div id="box" class="gamediv"><p>
+      <div id="box_wrap" class="gamediv">
+        <span id="box">
           <img width="50" height="80" src="img/00.png" data-ind="0"
           ><img width="50" height="80" src="img/01.png" data-ind="1"
           ><img width="50" height="80" src="img/02.png" data-ind="2"
@@ -48,9 +50,9 @@
           ><img width="50" height="80" src="img/13.png" data-ind="13"
           ><img width="50" height="80" src="img/14.png" data-ind="14"
           ><img width="50" height="80" src="img/15.png" data-ind="15">
-        </p>
+        </span>
       </div>
-      <div id="piece" class="gamediv"><p>選択されたコマ</p></div>
+      <div id="piece_wrap" class="gamediv"><p>選択されたコマ</p><span id="piece"></span></div>
       <div id="result"></div>
     </div>
   </div>
